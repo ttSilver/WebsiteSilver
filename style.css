@@ -2,6 +2,15 @@ html {
     scroll-behavior: smooth;
 }
   
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 section {
     padding: 100px 20px;
     border-bottom: 2px solid #ccc;
@@ -35,7 +44,7 @@ p {
     letter-spacing: 1pt;
     color: #272929;
     margin-bottom: 20px;
-  }
+}
 
 /* Header */
 header {
@@ -50,56 +59,65 @@ header h1 {
     margin: 0;
     color: white;
     font-family: 'VT323', monospace;
-  }
+}
 
 #category-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 20px 0;
 }
 
 #category-nav a {
-  color: white;
-  text-decoration: none;
-  font-size: 20px;
-  padding: 10px 20px;
-  background-color: #494786;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 10px 20px;
+    background-color: #494786;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
 }
 
 #category-nav a:hover {
-  background-color: #6c69aa;
+    background-color: #6c69aa;
 }
   
 .slideshow-wrapper {
-    max-width: 1200px;
-    margin: 40px auto;
-    background-color: #ababab; /* leichtes Grau */
-    border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    padding: 80px;
+  max-width: 1200px;
+  margin: 40px auto;
+  background-color: #ababab;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  padding: 40px; /* statt 0 */
+  height: auto;
+  min-height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
   
 .slideshow-container {
-    width: 100%;
-    height: 800px;
-    overflow: hidden;
-    position: relative;
-    box-sizing: border-box;
+  position: relative;
+  height: 800px;
+  overflow: hidden;
+  width: 100%;
 }
-  
+
 .slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    z-index: 1;
-    border-radius: 20px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 1;
+  border-radius: 20px; /* 👈 neu */
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 2;
 }
   
 .slide.active {
@@ -115,7 +133,8 @@ header h1 {
   
 /* Hauptbereich */
 main {
-    padding: 40px 20px;
+  flex: 1;
+  padding: 40px 20px;
 }
   
 /* Grid */
@@ -125,16 +144,21 @@ main {
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
 }
   
 .block {
-    padding: 20px;
-    position: relative;
-    cursor: pointer;
-    aspect-ratio: 1 / 1;
-    height: auto;
-    animation: pulse 2s infinite ease-in-out;
-    transition: transform 0.4s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  position: relative;
+  cursor: pointer;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  animation: pulse 2s infinite ease-in-out;
+  transition: transform 0.4s;
 }
 
 .block.active {
@@ -142,21 +166,11 @@ main {
 }
 
 .block.active img {
-    border-color: #9bbc0f;
+    border-color:#9bbc0f;
 }
 
 .block:hover {
     transform: none;
-}
-
-.block img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 12px;
-    border: 12px solid #ababab;
-    border-radius: 20px;
-
 }
 
 .block .overlay {
@@ -165,14 +179,6 @@ main {
 
 .block:hover {
     transform: scale(1.05);
-}
-  
-/* Footer */
-footer {
-    background-color: #272929;
-    text-align: center;
-    padding: 30px 20px;
-    color: #ddd;
 }
   
 /* Pulsieren */
@@ -206,34 +212,26 @@ footer {
     border-radius: 10px;
 }
   
-  .image-grid img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-  
-  /* Das obere breite Bild */
-  .image-grid img.top {
+/* Das obere breite Bild */
+.image-grid img.top {
     grid-column: span 2;
     height: 600px;
-  }
+}
 
-  
-  /* Quadratische kleine Bilder */
-  .image-grid img.small {
+/* Quadratische kleine Bilder */
+.image-grid img.small {
     aspect-ratio: 1 / 1;
-  }
+}
 
-  .button-group {
+.button-group {
     display: flex;
     justify-content: center;
     gap: 16px;
     margin: 20px 0 40px;
     flex-wrap: wrap;
-  }
+}
   
-  .button-group button {
+.button-group button {
     background-color: transparent;
     color: #494786;
     border: none;
@@ -243,27 +241,46 @@ footer {
     font-size: 25px;
     cursor: pointer;
     transition: color 0.3s ease;
-  }
+}
   
-  .button-group button.active {
+.button-group button.active {
     color: #e4000f;
     text-shadow: 0 0 8px rgba(228, 0, 15, 0.8);
-  }
+}
   
-  .button-group button:hover {
+.button-group button:hover {
     text-shadow: 0 0 5px rgba(73, 71, 134, 0.4);
-  }
+}
   
-  .button-group button.active:hover {
+.button-group button.active:hover {
     text-shadow: 0 0 8px rgba(228, 0, 15, 0.8);
     color: #e4000f;
-  }
+}
 
-  .button-group button:not(.active):hover {
+.button-group button:not(.active):hover {
     text-shadow: 0 0 5px rgba(73, 71, 134, 0.4);
-  }
+}
+
+.block-inner {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  margin-bottom: 8px;
+}
+
+.block-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 12px solid #ababab;
+  display: block;
+  margin: 0 auto;
+  box-sizing: border-box;
+
+}
 
 .rubrik-button {
+  margin-top: 12px;
   background: none;
   border: none;
   color: #494786;
@@ -272,6 +289,90 @@ footer {
   letter-spacing: 1pt;
   cursor: pointer;
   display: block;
-  margin: 10px auto 0;
   text-align: center;
+  width: 100%;
+}
+
+footer {
+  background: #272929;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+  min-height: 80px;
+  position: relative;
+}
+
+footer p {
+  color: white;
+  font-size: 22px;
+}
+
+.gameboy-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 120px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.dpad {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background-color: transparent;
+}
+
+.dpad-part {
+  position: absolute;
+  background-color: #000;
+  border-radius: 8px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.6), 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.dpad-horizontal {
+  width: 100px;
+  height: 20px;
+  top: 40px;
+  left: 0;
+}
+
+.dpad-vertical {
+  width: 20px;
+  height: 100px;
+  top: 0;
+  left: 40px;
+}
+
+.buttons {
+  display: flex;
+  gap: 30px;
+  margin-left: 60px;
+} 
+
+.button {
+  width: 50px;
+  height: 50px;
+  background-color: #9a2257;
+  border-radius: 50%;
+  box-shadow: inset -2px -2px 4px rgba(0, 0, 0, 0.6),
+              inset 2px 2px 4px rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#center-emoji {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 100px;
+  display: none;
+  z-index: 9999;
+  pointer-events: none;
 }

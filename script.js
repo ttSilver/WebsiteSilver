@@ -1,4 +1,5 @@
 const cursor = document.getElementById("emoji-cursor");
+const randomEmojis = ['🎯', '🔥', '💥', '🌈', '💣', '⚡', '🎮', '👾', '✨', '🌀'];
 
 document.addEventListener("mousemove", (e) => {
   cursor.style.left = `${e.clientX}px`;
@@ -70,4 +71,23 @@ document.addEventListener("DOMContentLoaded", () => {
       button.classList.add('active');
     });
   });
+
+  // Get existing emoji element
+  const centerEmoji = document.getElementById('center-emoji');
+  centerEmoji.style.display = 'none';
+
+  // Handle button press
+  const leftButton = document.querySelector('.buttons .button:first-child');
+  if (leftButton) {
+    leftButton.addEventListener('mousedown', () => {
+      console.log('Button gedrückt');
+      const emoji = randomEmojis[Math.floor(Math.random() * randomEmojis.length)];
+      centerEmoji.textContent = emoji;
+      centerEmoji.style.display = 'block';
+    });
+
+    document.addEventListener('mouseup', () => {
+      centerEmoji.style.display = 'none';
+    });
+  }
 });
