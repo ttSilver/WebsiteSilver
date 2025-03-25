@@ -1,5 +1,4 @@
 const cursor = document.getElementById("emoji-cursor");
-const randomEmojis = ['🎯', '🔥', '💥', '🌈', '💣', '⚡', '🎮', '👾', '✨', '🌀'];
 
 document.addEventListener("mousemove", (e) => {
   cursor.style.left = `${e.clientX}px`;
