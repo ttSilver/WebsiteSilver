@@ -51,6 +51,7 @@ header {
     background-color: #494786;
     text-align: center;
     padding: 30px 20px;
+    position: relative;
 }
 
 header h1 {
@@ -59,6 +60,30 @@ header h1 {
     margin: 0;
     color: white;
     font-family: 'VT323', monospace;
+}
+
+.status-indicator {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  background-color: #e4000f;
+  border-radius: 50%;
+  box-shadow: 0 0 8px 2px #e4000f;
+  margin-right: 10px;
+  vertical-align: middle;
+  animation: blink 3s infinite ease-in-out;
+  position: absolute;
+  top: 40px;
+  right: 150px;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
 }
 
 #category-nav {

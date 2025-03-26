@@ -10,6 +10,7 @@
 
 <body>
   <header>
+    <span class="status-indicator"></span>
     <h1>AinWorkshop * TTsilver </h1>
   </header>
 
@@ -88,19 +89,42 @@
     <section id="content-housing" class="category-content" style="display: none;">
       <h2>HOUSING</h2>
       <p>everyone needs a home...</p>
-      <div class="image-grid">
-        <img src="pictures/housing1.jpg" class="big" alt="Big Image" />
-        <img src="pictures/housing2.jpg" class="small" alt="Small Image 1" />
-        <img src="pictures/housing3.jpg" class="small" alt="Small Image 2" />
-        <img src="pictures/housing4.jpg" class="small" alt="Small Image 3" />
-        <img src="pictures/housing5.jpg" class="small" alt="Small Image 3" />
-        <img src="pictures/housing6.jpg" class="small" alt="Small Image 3" />
-        <img src="pictures/housing7.jpg" class="small" alt="Small Image 3" />
-        <img src="pictures/housing8.jpg" class="small" alt="Small Image 3" />
-        <img src="pictures/housing9.jpg" class="small" alt="Small Image 9" />
-        <img src="pictures/housing10.jpg" class="small" alt="Small Image 10" />
-        <img src="pictures/housing11.jpg" class="small" alt="Small Image 11" />
-        <img src="pictures/housing12.jpg" class="small" alt="Small Image 12" />
+      <div class="button-group" id="housing-button-group">
+        <button data-set="1">STAGES</button>
+        <button data-set="2">COMPONENTS</button>
+        <button data-set="3">ASSEMBLIES</button>
+      </div>
+      <div class="image-grid housing-set" data-set="1">
+        <img src="pictures/housing1.jpg" class="big" alt="Image 1" />
+        <img src="pictures/housing2.jpg" class="small" alt="Image 2" />
+        <img src="pictures/housing3.jpg" class="small" alt="Image 3" />
+        <img src="pictures/housing4.jpg" class="small" alt="Image 4" />
+        <img src="pictures/housing5.jpg" class="small" alt="Image 5" />
+        <img src="pictures/housing6.jpg" class="small" alt="Image 6" />
+        <img src="pictures/housing7.jpg" class="small" alt="Image 7" />
+        <img src="pictures/housing8.jpg" class="small" alt="Image 8" />
+        <img src="pictures/housing9.jpg" class="small" alt="Image 9" />
+        <img src="pictures/housing10.jpg" class="small" alt="Image 10" />
+        <img src="pictures/housing11.jpg" class="small" alt="Image 11" />
+        <img src="pictures/housing12.jpg" class="small" alt="Image 12" />
+      </div>
+
+      <div class="image-grid housing-set" data-set="2" style="display: none;">
+        <video src="videos/component1.mp4" class="video-component" autoplay loop muted playsinline></video>
+        <video src="videos/component2.mp4" class="video-component" autoplay loop muted playsinline></video>
+        <video src="videos/component3.mp4" class="video-component" autoplay loop muted playsinline></video>
+        <video src="videos/component4.mp4" class="video-component" autoplay loop muted playsinline></video>
+        <video src="videos/component5.mp4" class="video-component" autoplay loop muted playsinline></video>
+        <video src="videos/component6.mp4" class="video-component" autoplay loop muted playsinline></video>
+      </div>
+
+      <div class="image-grid housing-set" data-set="3" style="display: none;">
+        <img src="pictures/asse1.jpg" class="small" alt="Placeholder 1" />
+        <img src="pictures/asse2.jpg" class="small" alt="Placeholder 2" />
+        <img src="pictures/asse3.jpg" class="small" alt="Placeholder 3" />
+        <img src="pictures/asse4.jpg" class="small" alt="Placeholder 4" />
+        <img src="pictures/asse5.jpg" class="small" alt="Placeholder 5" />
+        <img src="pictures/asse6.jpg" class="small" alt="Placeholder 6" />
       </div>
       <div class="video-wrapper">
         <video src="videos/vid1.mp4" controls autoplay muted loop></video>
@@ -110,7 +134,7 @@
     <!-- FLEX -->
     <section id="content-flex" class="category-content" style="display: none;">
       <h2>FLEX</h2>
-      <p>anti rigid mindset</p>
+      <p>anti rigid built</p>
       <div class="button-group" id="flex-button-group">
         <button data-set="1">VENTY</button>
         <button data-set="2">OldMate</button>
@@ -250,6 +274,19 @@
                 grid.style.display = grid.getAttribute('data-set') === "1" ? 'grid' : 'none';
               });
             }
+          
+           if (targetId === 'content-housing') {
+             const housingButtons = document.querySelectorAll('#housing-button-group button');
+             const housingGrids = document.querySelectorAll('.housing-set');
+ 
+             housingButtons.forEach((btn, index) => {
+               btn.classList.toggle('active', index === 0);
+             });
+ 
+             housingGrids.forEach(grid => {
+               grid.style.display = grid.getAttribute('data-set') === "1" ? 'grid' : 'none';
+             });
+           }
           }
         });
       });
@@ -273,6 +310,20 @@
 
           const flexButtons = document.querySelectorAll('#flex-button-group button');
           flexButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+        });
+      });
+
+      // Buttons in HOUSING verarbeiten
+      document.querySelectorAll('#housing-button-group button').forEach(button => {
+        button.addEventListener('click', () => {
+          const setId = button.getAttribute('data-set');
+          document.querySelectorAll('.housing-set').forEach(grid => {
+            grid.style.display = (grid.getAttribute('data-set') === setId) ? 'grid' : 'none';
+          });
+
+          const housingButtons = document.querySelectorAll('#housing-button-group button');
+          housingButtons.forEach(btn => btn.classList.remove('active'));
           button.classList.add('active');
         });
       });
