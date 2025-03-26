@@ -75,18 +75,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const centerEmoji = document.getElementById('center-emoji');
   centerEmoji.style.display = 'none';
 
-  // Handle button press
+  // Emoji list
+  const randomEmojis = ['🎯', '🔥', '💥', '🌈', '💣', '⚡', '🎮', '👾', '✨', '🌀'];
+
+  // Handle button press (mobile + desktop)
   const leftButton = document.querySelector('.buttons .button:first-child');
   if (leftButton) {
-    leftButton.addEventListener('mousedown', () => {
-      console.log('Button gedrückt');
+    const showEmoji = (e) => {
       const emoji = randomEmojis[Math.floor(Math.random() * randomEmojis.length)];
       centerEmoji.textContent = emoji;
       centerEmoji.style.display = 'block';
-    });
+    };
 
-    document.addEventListener('mouseup', () => {
+    const hideEmoji = () => {
       centerEmoji.style.display = 'none';
-    });
+    };
+
+    leftButton.addEventListener('mousedown', showEmoji);
+    leftButton.addEventListener("touchstart", showEmoji, { passive: true });
+    document.addEventListener('mouseup', hideEmoji);
+    document.addEventListener('touchend', hideEmoji);
   }
 });

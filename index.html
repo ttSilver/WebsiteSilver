@@ -279,32 +279,11 @@
 
       const emoji = document.getElementById("center-emoji");
       const leftButton = document.querySelector(".button-b");
-
-      leftButton.addEventListener("mousedown", () => {
-        const randomEmojis = ['🐉','💾','🍓','🍋', '💥', '🥊','💳', '🍒', '🦖', '🔦','🩸', '🍫', '🎃','🛒','🧇','🦧','🧀','🧈','🫳','🪰','🍰','🍄','🤌','🪈','🪃','🈂️','🛖','🪦','🛢️'];
-        emoji.textContent = randomEmojis[Math.floor(Math.random() * randomEmojis.length)];
-        emoji.style.display = "block";
-      });
-
-      leftButton.addEventListener("mouseup", () => {
-        emoji.style.display = "none";
-      });
-
       const rightButton = document.querySelector(".button-a");
-      const rpsEmojis = ['✂️', '🪨', '📄'];
-      let rpsIndex = 0;
-
-      rightButton.addEventListener("mousedown", () => {
-        emoji.textContent = rpsEmojis[rpsIndex];
-        emoji.style.display = "block";
-        rpsIndex = (rpsIndex + 1) % rpsEmojis.length;
-      });
-
-      rightButton.addEventListener("mouseup", () => {
-        emoji.style.display = "none";
-      });
-
       const dpad = document.querySelector('.dpad');
+
+      const randomEmojis = ['🐉','💾','🍓','🍋', '💥', '🥊','💳', '🍒', '🦖', '🔦','🩸', '🍫', '🎃','🛒','🧇','🦧','🧀','🧈','🫳','🪰','🍰','🍄','🤌','🪈','🪃','🈂️','🛖','🪦','🛢️'];
+      const rpsEmojis = ['✂️', '🪨', '📄'];
       const runningEmojis = {
         left: '⏪',
         right: '🛫',
@@ -312,10 +291,44 @@
         down: '🪂'
       };
 
-      dpad.addEventListener('mousedown', (e) => {
+      let rpsIndex = 0;
+
+      // Universal handlers
+      function showEmoji(text) {
+        emoji.textContent = text;
+        emoji.style.display = "block";
+      }
+
+      function hideEmoji() {
+        emoji.style.display = "none";
+      }
+
+      // Left Button
+      function handleLeftPress(e) {
+        e.preventDefault();
+        const emojiChar = randomEmojis[Math.floor(Math.random() * randomEmojis.length)];
+        showEmoji(emojiChar);
+      }
+      leftButton.addEventListener("mousedown", handleLeftPress);
+      leftButton.addEventListener("touchstart", handleLeftPress);
+      document.addEventListener("mouseup", hideEmoji);
+      document.addEventListener("touchend", hideEmoji);
+
+      // Right Button
+      function handleRightPress(e) {
+        e.preventDefault();
+        showEmoji(rpsEmojis[rpsIndex]);
+        rpsIndex = (rpsIndex + 1) % rpsEmojis.length;
+      }
+      rightButton.addEventListener("mousedown", handleRightPress);
+      rightButton.addEventListener("touchstart", handleRightPress);
+
+      // D-pad
+      function handleDpadPress(e) {
+        e.preventDefault();
         const bounds = dpad.getBoundingClientRect();
-        const x = e.clientX - bounds.left;
-        const y = e.clientY - bounds.top;
+        const x = (e.touches ? e.touches[0].clientX : e.clientX) - bounds.left;
+        const y = (e.touches ? e.touches[0].clientY : e.clientY) - bounds.top;
 
         const centerX = bounds.width / 2;
         const centerY = bounds.height / 2;
@@ -330,13 +343,10 @@
           direction = dy < 0 ? 'up' : 'down';
         }
 
-        emoji.textContent = runningEmojis[direction];
-        emoji.style.display = 'block';
-      });
-
-      dpad.addEventListener('mouseup', () => {
-        emoji.style.display = 'none';
-      });
+        showEmoji(runningEmojis[direction]);
+      }
+      dpad.addEventListener("mousedown", handleDpadPress);
+      dpad.addEventListener("touchstart", handleDpadPress);
     });
   </script>
 </body>
