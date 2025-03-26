@@ -316,9 +316,15 @@
 
       // Right Button
       function handleRightPress(e) {
-        e.preventDefault();
-        showEmoji(rpsEmojis[rpsIndex]);
+        if (e.cancelable) e.preventDefault();
+        const userEmoji = rpsEmojis[rpsIndex];
+        showEmoji(`${userEmoji}`);
         rpsIndex = (rpsIndex + 1) % rpsEmojis.length;
+
+        setTimeout(() => {
+          const botEmoji = rpsEmojis[Math.floor(Math.random() * rpsEmojis.length)];
+          showEmoji(`${userEmoji}\nvs\n${botEmoji}`);
+        }, 500);
       }
       rightButton.addEventListener("mousedown", handleRightPress);
       rightButton.addEventListener("touchstart", handleRightPress);

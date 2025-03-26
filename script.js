@@ -82,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const leftButton = document.querySelector('.buttons .button:first-child');
   if (leftButton) {
     const showEmoji = (e) => {
+      if (e.cancelable) e.preventDefault();
       const emoji = randomEmojis[Math.floor(Math.random() * randomEmojis.length)];
       centerEmoji.textContent = emoji;
       centerEmoji.style.display = 'block';
@@ -95,5 +96,39 @@ document.addEventListener("DOMContentLoaded", () => {
     leftButton.addEventListener("touchstart", showEmoji, { passive: true });
     document.addEventListener('mouseup', hideEmoji);
     document.addEventListener('touchend', hideEmoji);
+  }
+
+  const rightButton = document.querySelector(".buttons .button-a");
+  const rpsEmojis = ['✂️', '🪨', '📄'];
+  let rpsIndex = 0;
+
+  if (rightButton) {
+    rightButton.addEventListener("mousedown", (e) => {
+      if (e.cancelable) e.preventDefault();
+      const userEmoji = rpsEmojis[rpsIndex];
+      centerEmoji.textContent = userEmoji;
+      centerEmoji.style.display = 'block';
+
+      setTimeout(() => {
+        const opponentEmoji = rpsEmojis[Math.floor(Math.random() * rpsEmojis.length)];
+        centerEmoji.textContent = `${userEmoji} vs ${opponentEmoji}`;
+      }, 400);
+
+      rpsIndex = (rpsIndex + 1) % rpsEmojis.length;
+    });
+
+    rightButton.addEventListener("touchstart", (e) => {
+      if (e.cancelable) e.preventDefault();
+      const userEmoji = rpsEmojis[rpsIndex];
+      centerEmoji.textContent = `🧍 ${userEmoji}   vs   ${opponentEmoji} 🤖`;
+      centerEmoji.style.display = 'block';
+
+      setTimeout(() => {
+        const opponentEmoji = rpsEmojis[Math.floor(Math.random() * rpsEmojis.length)];
+        centerEmoji.textContent = `${userEmoji} vs ${opponentEmoji}`;
+      }, 400);
+
+      rpsIndex = (rpsIndex + 1) % rpsEmojis.length;
+    });
   }
 });
