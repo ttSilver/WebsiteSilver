@@ -54,6 +54,19 @@ document.addEventListener("DOMContentLoaded", () => {
           });
         }
 
+        if (targetId === 'content-silver') {
+          const silverButtons = document.querySelectorAll('#silver-button-group button');
+          const silverGrids = document.querySelectorAll('.silver-set');
+
+          silverButtons.forEach((btn, index) => {
+            btn.classList.toggle('active', index === 0);
+          });
+
+          silverGrids.forEach(grid => {
+            grid.style.display = grid.getAttribute('data-set') === "1" ? 'grid' : 'none';
+          });
+        }
+
         target.style.display = 'block';
         target.scrollIntoView({ behavior: 'smooth' });
       }

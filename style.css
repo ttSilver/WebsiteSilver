@@ -407,16 +407,29 @@ footer p {
   pointer-events: none;
 }
 
-.video-wrapper {
-  max-width: 1000px;
-  margin: 40px auto;
+.image-grid .video-wrapper {
+  grid-column: 1 / -1; /* Spannt über alle Spalten */
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.video-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 40px auto;
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+  text-align: center;
 }
 
 .video-wrapper video {
   width: 100%;
-  max-width: 800px;
+  max-width: 600px; /* etwas kleiner für cleanes Design */
   border-radius: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
