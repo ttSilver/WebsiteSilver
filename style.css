@@ -27,10 +27,9 @@ main {
 }
 
 .divider {
-  height: 6px;
   margin: 0 auto;
-  max-width: 1200px;
-  border-radius: 3px;
+  max-width: 1300px;
+  border-radius: 4px;
   height: 8px;
   background-color: #dd2020;
 }
