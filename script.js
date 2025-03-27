@@ -1,147 +1,113 @@
-const cursor = document.getElementById("emoji-cursor");
-
-document.addEventListener("mousemove", (e) => {
-  cursor.style.left = `${e.clientX}px`;
-  cursor.style.top = `${e.clientY}px`;
-});
-
 document.addEventListener("DOMContentLoaded", () => {
-  // Slideshow logic
+  // Slideshow
   const slides = document.querySelectorAll('.slide');
   let currentSlide = 0;
 
   function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === index);
-    });
-  }
-
-  function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
+    slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
   }
 
   showSlide(currentSlide);
-  setInterval(nextSlide, 4000);
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }, 4000);
 
-  // Alle Links mit Hash-Zielen reagieren lassen
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const targetId = 'content-' + this.getAttribute('href').replace('#', '');
+  // Rubrikenauswahl mit Scroll
+  document.querySelectorAll('.block').forEach(block => {
+    block.addEventListener('click', function() {
+      document.querySelectorAll('.block').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+
+      const targetId = 'content-' + this.getAttribute('data-target');
       document.querySelectorAll('.category-content').forEach(sec => sec.style.display = 'none');
       const target = document.getElementById(targetId);
       if (target) {
-        // Set clicked rubrik block as active
-        const clickedBlock = this.closest('.block');
-        if (clickedBlock) {
-          document.querySelectorAll('.block').forEach(b => b.classList.remove('active'));
-          clickedBlock.classList.add('active');
-        }
-
-        if (targetId === 'content-flex') {
-          const flexButtons = document.querySelectorAll('#flex-button-group button');
-          const flexGrids = document.querySelectorAll('.flex-set');
-
-          // Reset active button
-          flexButtons.forEach((btn, index) => {
-            btn.classList.toggle('active', index === 0);
-          });
-
-          // Reset visible image set
-          flexGrids.forEach(grid => {
-            grid.style.display = grid.getAttribute('data-set') === "1" ? 'grid' : 'none';
-          });
-        }
-
-        if (targetId === 'content-silver') {
-          const silverButtons = document.querySelectorAll('#silver-button-group button');
-          const silverGrids = document.querySelectorAll('.silver-set');
-
-          silverButtons.forEach((btn, index) => {
-            btn.classList.toggle('active', index === 0);
-          });
-
-          silverGrids.forEach(grid => {
-            grid.style.display = grid.getAttribute('data-set') === "1" ? 'grid' : 'none';
-          });
-        }
-
         target.style.display = 'block';
-        target.scrollIntoView({ behavior: 'smooth' });
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
   });
 
-  // Optional: Mark clicked category buttons as active
+  // Rubrik-Buttons (Subkategorien)
   document.querySelectorAll('.button-group button').forEach(button => {
     button.addEventListener('click', () => {
-      const parentGroup = button.closest('.button-group');
-      if (parentGroup) {
-        parentGroup.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
-      }
+      const group = button.parentElement;
+      group.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
+
+      const targetSet = button.getAttribute('data-set');
+      const imageGrids = group.parentElement.querySelectorAll('.image-grid');
+      imageGrids.forEach(grid => {
+        grid.style.display = grid.getAttribute('data-set') === targetSet ? 'grid' : 'none';
+      });
     });
   });
 
-  // Get existing emoji element
-  const centerEmoji = document.getElementById('center-emoji');
-  centerEmoji.style.display = 'none';
+  // Gameboy-Emoji-Steuerung (vereinfacht)
+  const emoji = document.getElementById("center-emoji");
+  const leftButton = document.querySelector(".button-b");
+  const rightButton = document.querySelector(".button-a");
+  const dpad = document.querySelector('.dpad');
 
-  // Emoji list
-  const randomEmojis = ['🎯', '🔥', '💥', '🌈', '💣', '⚡', '🎮', '👾', '✨', '🌀'];
-
-  // Handle button press (mobile + desktop)
-  const leftButton = document.querySelector('.buttons .button:first-child');
-  if (leftButton) {
-    const showEmoji = (e) => {
-      if (e.cancelable) e.preventDefault();
-      const emoji = randomEmojis[Math.floor(Math.random() * randomEmojis.length)];
-      centerEmoji.textContent = emoji;
-      centerEmoji.style.display = 'block';
-    };
-
-    const hideEmoji = () => {
-      centerEmoji.style.display = 'none';
-    };
-
-    leftButton.addEventListener('mousedown', showEmoji);
-    leftButton.addEventListener("touchstart", showEmoji, { passive: true });
-    document.addEventListener('mouseup', hideEmoji);
-    document.addEventListener('touchend', hideEmoji);
-  }
-
-  const rightButton = document.querySelector(".buttons .button-a");
+  const randomEmojis = ['🪙','🐉','💾','🍓','🍋','🥊','💳','🍒','🦖','🔦','🩸','🍫','🎃','🛒','🧇','🦧','🧀','🧈','🫳','🪰','🍰','🍄','🤌','🪈','🪃','🈂️','🛖','🪦','🛢️'];
   const rpsEmojis = ['✂️', '🪨', '📄'];
+  const runningEmojis = { left: '◀', right: '▶', up: '▲', down: '▼' };
+
   let rpsIndex = 0;
 
-  if (rightButton) {
-    rightButton.addEventListener("mousedown", (e) => {
-      if (e.cancelable) e.preventDefault();
-      const userEmoji = rpsEmojis[rpsIndex];
-      centerEmoji.textContent = userEmoji;
-      centerEmoji.style.display = 'block';
-
-      setTimeout(() => {
-        const opponentEmoji = rpsEmojis[Math.floor(Math.random() * rpsEmojis.length)];
-        centerEmoji.textContent = `${userEmoji} vs ${opponentEmoji}`;
-      }, 400);
-
-      rpsIndex = (rpsIndex + 1) % rpsEmojis.length;
-    });
-
-    rightButton.addEventListener("touchstart", (e) => {
-      if (e.cancelable) e.preventDefault();
-      const userEmoji = rpsEmojis[rpsIndex];
-      centerEmoji.textContent = `🧍 ${userEmoji}   vs   ${opponentEmoji} 🤖`;
-      centerEmoji.style.display = 'block';
-
-      setTimeout(() => {
-        const opponentEmoji = rpsEmojis[Math.floor(Math.random() * rpsEmojis.length)];
-        centerEmoji.textContent = `${userEmoji} vs ${opponentEmoji}`;
-      }, 400);
-
-      rpsIndex = (rpsIndex + 1) % rpsEmojis.length;
-    });
+  function showEmoji(text) {
+    emoji.textContent = text;
+    emoji.style.display = "block";
   }
+
+  function hideEmoji() {
+    emoji.style.display = "none";
+  }
+
+  leftButton.addEventListener("mousedown", e => {
+    e.preventDefault();
+    showEmoji(randomEmojis[Math.floor(Math.random() * randomEmojis.length)]);
+  });
+
+  rightButton.addEventListener("mousedown", e => {
+    e.preventDefault();
+    const userEmoji = rpsEmojis[rpsIndex];
+    showEmoji(userEmoji);
+    rpsIndex = (rpsIndex + 1) % rpsEmojis.length;
+
+    setTimeout(() => {
+      const botEmoji = rpsEmojis[Math.floor(Math.random() * rpsEmojis.length)];
+      showEmoji(`${userEmoji}\nvs\n${botEmoji}`);
+    }, 500);
+  });
+
+  dpad.addEventListener("mousedown", e => {
+    e.preventDefault();
+    const bounds = dpad.getBoundingClientRect();
+    const dx = e.clientX - bounds.left - bounds.width / 2;
+    const dy = e.clientY - bounds.top - bounds.height / 2;
+
+    const direction = Math.abs(dx) > Math.abs(dy)
+      ? (dx < 0 ? 'left' : 'right')
+      : (dy < 0 ? 'up' : 'down');
+
+    showEmoji(runningEmojis[direction]);
+
+    if (direction === 'up' || direction === 'down') {
+      const activeSection = document.querySelector('.category-content[style*="block"]');
+      const group = activeSection?.querySelector('.button-group');
+      const buttons = group?.querySelectorAll('button');
+      const activeBtn = group?.querySelector('button.active');
+      if (buttons && activeBtn) {
+        const index = Array.from(buttons).indexOf(activeBtn);
+        let nextIndex = direction === 'down'
+          ? (index + 1) % buttons.length
+          : (index - 1 + buttons.length) % buttons.length;
+        buttons[nextIndex].click();
+      }
+    }
+  });
+
+  document.addEventListener("mouseup", hideEmoji);
 });

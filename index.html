@@ -6,14 +6,46 @@
   <title>📟 AinWorks * TTsilver</title>
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css?v=1742985701417">
+  <style>
+    :root {
+      --font-header: 36px;
+      --font-subheader: 32px;
+      --font-buttons: 24px;
+      --font-subbuttons: 24px;
+      --font-marquee: 18px;
+      --font-emoji-large: 100px;
+    }
+    
+    header h1 { font-size: var(--font-header); }
+    .rubrik-wrapper h2 { font-size: var(--font-subheader); }
+    .rubrik-button { font-size: var(--font-buttons); }
+    .button-group button { font-size: var(--font-subbuttons); }
+    .marquee-text { font-size: var(--font-marquee); }
+    #center-emoji { font-size: var(--font-emoji-large); }
+    
+    .rubrik-button, .button-group button, header h1, footer p {
+      font-family: 'VT323', monospace;
+    }
+    .rubrik-wrapper h2 {
+      margin-bottom: 4px;
+    }
+    .rubrik-wrapper p {
+      margin-top: 4px;
+    }
+  </style>
 </head>
 
 <body> 
+
   <header>
     <h1><span class="status-indicator"></span> AinWorks * TTsilver</h1>
   </header>
 
   <main>     
+    <div class="marquee-container">
+      <div class="marquee-text"> one needs one to work so one can chill - ain said to silver
+      </div>
+    </div>
     <div class="slideshow-wrapper"> 
       <div class="slideshow-container">
         <img loading="lazy" class="slide" src="pictures/ovw1.jpg" alt="Slide 1" />
@@ -25,204 +57,63 @@
     </div>
     
     <div class="divider"></div>
-
+    
     <div class="grid">
       <div class="block" data-target="housing">
-        <div class="block-inner">
+        <div class="block-inner" style="padding: 10px;">
           <a href="#housing">
-            <img loading="lazy" src="pictures/hfdm.jpg" alt="housing" />
+            <img loading="lazy" src="pictures/hfdm.jpg" alt="housing" style="width: 100%; max-width: 140px;" />
           </a>
         </div>
         <button class="rubrik-button">housing</button>
       </div>
-  
       
       <div class="block" data-target="flex">
-        <div class="block-inner">
+        <div class="block-inner" style="padding: 10px;">
           <a href="#flex">
-            <img loading="lazy" src="pictures/flcas.jpg" alt="flex" />
+            <img loading="lazy" src="pictures/flcas.jpg" alt="flex" style="width: 100%; max-width: 140px;" />
           </a>
         </div>
         <button class="rubrik-button">flex</button>
       </div>
       
       <div class="block" data-target="glass">
-        <div class="block-inner">
+        <div class="block-inner" style="padding: 10px;">
           <a href="#glass">
-            <img loading="lazy" src="pictures/weGl.jpg" alt="glass" />
+            <img loading="lazy" src="pictures/weGl.jpg" alt="glass" style="width: 100%; max-width: 140px;" />
           </a>
         </div>
         <button class="rubrik-button">glass</button>
       </div>
-
+      
       <div class="block" data-target="ceramic">
-        <div class="block-inner">
+        <div class="block-inner" style="padding: 10px;">
           <a href="#ceramic">
-            <img loading="lazy" src="pictures/cer1.jpg" alt="ceramic" />
+            <img loading="lazy" src="pictures/cer1.jpg" alt="ceramic" style="width: 100%; max-width: 140px;" />
           </a>
         </div>
         <button class="rubrik-button">ceramic</button>
       </div>
-
+      
       <div class="block" data-target="silver">
-        <div class="block-inner">
+        <div class="block-inner" style="padding: 10px;">
           <a href="#silver">
-            <img loading="lazy" src="pictures/sil1.jpg" alt="silver" />
+            <img loading="lazy" src="pictures/sil1.jpg" alt="silver" style="width: 100%; max-width: 140px;" />
           </a>
         </div>
         <button class="rubrik-button">silver</button>
       </div>
-
+      
       <div class="block" data-target="electronic">
-        <div class="block-inner">
+        <div class="block-inner" style="padding: 10px;">
           <a href="#electronic">
-            <img loading="lazy" src="pictures/el1.jpg" alt="electronic" />
+            <img loading="lazy" src="pictures/el1.jpg" alt="electronic" style="width: 100%; max-width: 140px;" />
           </a>
         </div>
         <button class="rubrik-button">electronic</button>
       </div>
-
     </div>
     
-    <!-- HOUSING -->
-    <section id="content-housing" class="category-content" style="display: none;">
-      <h2>HOUSING</h2>
-      <p>everyone needs a home...</p>
-      <div class="button-group" id="housing-button-group">
-        <button data-set="1">STAGES</button>
-        <button data-set="2">COMPONENTS</button>
-        <button data-set="3">ASSEMBLIES</button>
-      </div>
-      <div class="image-grid housing-set" data-set="1">
-        <img loading="lazy" src="pictures/housing1.jpg" class="big" alt="Image 1" />
-        <img loading="lazy" src="pictures/housing2.jpg" class="small" alt="Image 2" />
-        <img loading="lazy" src="pictures/housing3.jpg" class="small" alt="Image 3" />
-        <img loading="lazy" src="pictures/housing4.jpg" class="small" alt="Image 4" />
-        <img loading="lazy" src="pictures/housing5.jpg" class="small" alt="Image 5" />
-        <img loading="lazy" src="pictures/housing6.jpg" class="small" alt="Image 6" />
-        <img loading="lazy" src="pictures/housing7.jpg" class="small" alt="Image 7" />
-        <img loading="lazy" src="pictures/housing8.jpg" class="small" alt="Image 8" />
-        <img loading="lazy" src="pictures/housing9.jpg" class="small" alt="Image 9" />
-        <img loading="lazy" src="pictures/housing10.jpg" class="small" alt="Image 10" />
-        <img loading="lazy" src="pictures/housing11.jpg" class="small" alt="Image 11" />
-        <img loading="lazy" src="pictures/housing12.jpg" class="small" alt="Image 12" />
-      </div> 
-
-      <div class="image-grid housing-set" data-set="2" style="display: none;">
-        <video src="videos/pVid1.mp4" class="video-component" autoplay loop muted playsinline></video>
-        <video src="videos/pVid2.mp4" class="video-component" autoplay loop muted playsinline></video>
-        <video src="videos/pVid3.mp4" class="video-component" autoplay loop muted playsinline></video>
-        <video src="videos/pVid4.mp4" class="video-component" autoplay loop muted playsinline></video>
-        <video src="videos/pVid5.mp4" class="video-component" autoplay loop muted playsinline></video>
-        <video src="videos/pVid6.mp4" class="video-component" autoplay loop muted playsinline></video>
-        <video src="videos/pVid7.mp4" class="video-component" autoplay loop muted playsinline></video>
-        <video src="videos/pVid8.mp4" class="video-component" autoplay loop muted playsinline></video>
-        <div class="video-wrapper">
-          <video src="videos/vid1.mp4" autoplay muted loop playsinline loading="lazy"></video>
-        </div>
-      </div>
-
-      <div class="image-grid housing-set" data-set="3" style="display: none;">
-        <img loading="lazy" src="pictures/asse1.jpg" class="small" alt="Placeholder 1" />
-        <img loading="lazy" src="pictures/asse2.jpg" class="small" alt="Placeholder 2" />
-        <img loading="lazy" src="pictures/asse3.jpg" class="small" alt="Placeholder 3" />
-        <img loading="lazy" src="pictures/asse4.jpg" class="small" alt="Placeholder 4" />
-        <img loading="lazy" src="pictures/asse5.jpg" class="small" alt="Placeholder 5" />
-        <img loading="lazy" src="pictures/asse6.jpg" class="small" alt="Placeholder 6" />
-      </div>
-      
-    </section>
-    
-    <!-- FLEX -->
-    <section id="content-flex" class="category-content" style="display: none;">
-      <h2>FLEX</h2>
-      <p>anti rigid built</p>
-      <div class="button-group" id="flex-button-group">
-        <button data-set="1">VENTY</button>
-        <button data-set="2">OldMate</button>
-        <button data-set="3">FlowerMill</button>
-      </div>
-      <div class="image-grid flex-set" data-set="1">
-        <img loading="lazy" src="pictures/flex1.jpg" class="big" alt="Big Image" />
-        <img loading="lazy" src="pictures/flex2.jpg" class="small" alt="Small Image 1" />
-        <img loading="lazy" src="pictures/flex3.jpg" class="small" alt="Small Image 2" />
-        <img loading="lazy" src="pictures/flex4.jpg" class="small" alt="Small Image 3" />
-        <img loading="lazy" src="pictures/flex5.jpg" class="small" alt="Small Image 5" />
-        <img loading="lazy" src="pictures/flex6.jpg" class="small" alt="Small Image 6" />
-      </div>
-      <div class="image-grid flex-set" data-set="2" style="display: none;">
-        <img loading="lazy" src="pictures/om1.jpg" class="big" alt="Big Image" />
-        <img loading="lazy" src="pictures/om2.jpg" class="small" alt="Small Image 1" />
-        <img loading="lazy" src="pictures/om3.jpg" class="small" alt="Small Image 2" />
-        <img loading="lazy" src="pictures/om4.jpg" class="small" alt="Small Image 3" />
-      </div>
-      <div class="image-grid flex-set" data-set="3" style="display: none;">
-        <img loading="lazy" src="pictures/flower1.jpg" class="big" alt="Big Image" />
-        <img loading="lazy" src="pictures/flower2.jpg" class="small" alt="Small Image 1" />
-        <img loading="lazy" src="pictures/flower3.jpg" class="small" alt="Small Image 2" />
-        <img loading="lazy" src="pictures/flower4.jpg" class="small" alt="Small Image 3" />
-      </div>
-    </section>
-
-    <!-- GLASS -->
-    <section id="content-glass" class="category-content" style="display: none;">
-      <h2>GLASS </h2>
-      <p>portable storage / heat shields</p>
-      <div class="image-grid">
-        <img loading="lazy" src="pictures/glass1.jpg" class="big" alt="Big Image" />
-        <img loading="lazy" src="pictures/glass2.jpg" class="small" alt="Small Image 1" />
-        <img loading="lazy" src="pictures/glass3.jpg" class="small" alt="Small Image 2" />
-        <img loading="lazy" src="pictures/glass4.jpg" class="small" alt="Small Image 3" />
-        <img loading="lazy" src="pictures/glass5.jpg" class="small" alt="Small Image 5" />
-        <img loading="lazy" src="pictures/glass6.jpg" class="small" alt="Small Image 6" />
-      </div>
-    </section>
-
-     <!-- CERAMIC -->
-     <section id="content-ceramic" class="category-content" style="display: none;">
-      <h2>CERAMIC </h2>
-      <p>uprintable</p>
-      <div class="image-grid">
-        <img loading="lazy" src="pictures/ceramic1.jpg" class="big" alt="Big Image" />
-        <img loading="lazy" src="pictures/ceramic2.jpg" class="small" alt="Small Image 1" />
-        <img loading="lazy" src="pictures/ceramic3.jpg" class="small" alt="Small Image 2" />
-        <img loading="lazy" src="pictures/ceramic4.jpg" class="small" alt="Small Image 3" />
-      </div>
-    </section>
-
-     <section id="content-silver" class="category-content" style="display: none;">
-      <h2>SILVER</h2>
-      <p>prototyping</p>
-      <div class="button-group" id="silver-button-group">
-        <button class="active" data-set="1">BOWLS</button>
-        <button data-set="2">SPOONS</button>
-      </div>
-      <div class="image-grid silver-set" data-set="1">
-        <img loading="lazy" src="pictures/silver1.jpg" class="big" alt="Big Image" />
-        <img loading="lazy" src="pictures/silver2.jpg" class="small" alt="Small Image 1" />
-        <img loading="lazy" src="pictures/silver3.jpg" class="small" alt="Small Image 2" />
-        <img loading="lazy" src="pictures/silver4.jpg" class="small" alt="Small Image 3" />
-      </div>
-      <div class="image-grid silver-set" data-set="2" style="display: none;">
-        <img loading="lazy" src="pictures/spoon1.jpg" class="small" alt="Spoon 1" />
-        <img loading="lazy" src="pictures/spoon2.jpg" class="small" alt="Spoon 2" />
-        <img loading="lazy" src="pictures/spoon3.jpg" class="small" alt="Spoon 3" />
-        <img loading="lazy" src="pictures/spoon4.jpg" class="small" alt="Spoon 4" />
-      </div>
-    </section>
-
-    <!-- ELECTRONIC -->
-    <section id="content-electronic" class="category-content" style="display: none;">
-      <h2>ELECTRONIC </h2>
-      <p>make it run</p>
-      <div class="image-grid">
-        <img loading="lazy" src="pictures/electronic1.jpg" class="big" alt="Big Image" />
-        <img loading="lazy" src="pictures/electronic2.jpg" class="small" alt="Small Image 1" />
-        <img loading="lazy" src="pictures/electronic3.jpg" class="small" alt="Small Image 2" />
-        <img loading="lazy" src="pictures/electronic4.jpg" class="small" alt="Small Image 3" />
-      </div>
-    </section>
-
     <div class="gameboy-controls">
       <div class="dpad">
         <div class="dpad-part dpad-horizontal"></div>
@@ -233,13 +124,160 @@
         <div class="button button-a"></div>
       </div>
     </div>
+    
+    <!-- HOUSING -->
+    <section id="content-housing" class="category-content" style="display: none;">
+      <div class="rubrik-wrapper">
+        <h2>HOUSING</h2>
+        <p>everyone needs a home...</p>
+        <div class="button-group" id="housing-button-group">
+          <button data-set="1" class="active">STAGES</button>
+          <button data-set="2">COMPONENTS</button>
+          <button data-set="3">ASSEMBLIES</button>
+        </div>
+        <div class="image-grid housing-set" data-set="1" style="grid-template-columns: repeat(4,1fr);">
+          <img loading="lazy" src="pictures/housing1.jpg" class="small" alt="housing 1" />
+          <img loading="lazy" src="pictures/housing2.jpg" class="small" alt="housing 2" />
+          <img loading="lazy" src="pictures/housing3.jpg" class="small" alt="housing 3" />
+          <img loading="lazy" src="pictures/housing4.jpg" class="small" alt="housing 4" />
+          <img loading="lazy" src="pictures/housing5.jpg" class="small" alt="housing 5" />
+          <img loading="lazy" src="pictures/housing6.jpg" class="small" alt="housing 6" />
+          <img loading="lazy" src="pictures/housing7.jpg" class="small" alt="housing 7" />
+          <img loading="lazy" src="pictures/housing8.jpg" class="small" alt="housing 8" />
+          <img loading="lazy" src="pictures/housing9.jpg" class="small" alt="housing 9" />
+          <img loading="lazy" src="pictures/housing10.jpg" class="small" alt="housing 10" />
+          <img loading="lazy" src="pictures/housing11.jpg" class="small" alt="housing 11" />
+          <img loading="lazy" src="pictures/housing12.jpg" class="small" alt="housing 12" />
+        </div>
+        <div class="image-grid housing-set" data-set="2" style="display: none;">
+          <video src="videos/vc1.mp4" autoplay loop muted playsinline class="small" loading="lazy"></video>
+          <video src="videos/vc2.mp4" autoplay loop muted playsinline class="small" loading="lazy"></video>
+          <video src="videos/vc3.mp4" autoplay loop muted playsinline class="small" loading="lazy"></video>
+          <video src="videos/vc4.mp4" autoplay loop muted playsinline class="small" loading="lazy"></video>
+          <video src="videos/vc5.mp4" autoplay loop muted playsinline class="small" loading="lazy"></video>
+          <video src="videos/vc6.mp4" autoplay loop muted playsinline class="small" loading="lazy"></video>
+          <video src="videos/vc7.mp4" autoplay loop muted playsinline class="small" loading="lazy"></video>
+          <video src="videos/vc8.mp4" autoplay loop muted playsinline class="small" loading="lazy"></video>
+          <div class="video-wrapper" style="grid-column: 1 / -1;">
+            <video class="video-component" src="videos/vid1.mp4" autoplay loop muted playsinline loading="lazy"></video>
+          </div>
+        </div>
+        <div class="image-grid housing-set" data-set="3" style="display: none;">
+          <img loading="lazy" src="pictures/asse1.jpg" class="small" alt="assembly 1" />
+          <img loading="lazy" src="pictures/asse2.jpg" class="small" alt="assembly 2" />
+          <img loading="lazy" src="pictures/asse3.jpg" class="small" alt="assembly 3" />
+          <img loading="lazy" src="pictures/asse4.jpg" class="small" alt="assembly 4" />
+          <img loading="lazy" src="pictures/asse5.jpg" class="small" alt="assembly 5" />
+          <img loading="lazy" src="pictures/asse6.jpg" class="small" alt="assembly 6" />
+        </div>
+      </div>
+    </section>
+    
+    <!-- FLEX -->
+    <section id="content-flex" class="category-content" style="display: none;">
+      <div class="rubrik-wrapper">
+        <h2>FLEX</h2>
+        <p>anti rigid built</p>
+        <div class="button-group" id="flex-button-group">
+          <button data-set="1" class="active">VENTY</button>
+          <button data-set="2">OldMate</button>
+          <button data-set="3">FlowerMill</button>
+        </div>
+        <div class="image-grid flex-set" data-set="1" style="grid-template-columns: repeat(3, 1fr);">
+          <img loading="lazy" src="pictures/flex1.jpg" class="big" alt="Big Image" />
+        <img loading="lazy" src="pictures/flex2.jpg" class="small" alt="Small Image 1" />
+        <img loading="lazy" src="pictures/flex3.jpg" class="small" alt="Small Image 2" />
+        <img loading="lazy" src="pictures/flex4.jpg" class="small" alt="Small Image 3" />
+        <img loading="lazy" src="pictures/flex5.jpg" class="small" alt="Small Image 5" />
+        <img loading="lazy" src="pictures/flex6.jpg" class="small" alt="Small Image 6" />
+      </div>
+        <div class="image-grid flex-set" data-set="2" style="grid-template-columns: repeat(3, 1fr);">
+        <img loading="lazy" src="pictures/om1.jpg" class="big" alt="Big Image" />
+        <img loading="lazy" src="pictures/om2.jpg" class="small" alt="Small Image 1" />
+        <img loading="lazy" src="pictures/om3.jpg" class="small" alt="Small Image 2" />
+        <img loading="lazy" src="pictures/om4.jpg" class="small" alt="Small Image 3" />
+      </div>
+      <div class="image-grid flex-set" data-set="3" style="display: none;">
+        <img loading="lazy" src="pictures/flower1.jpg" class="big" alt="Big Image" />
+        <img loading="lazy" src="pictures/flower2.jpg" class="small" alt="Small Image 1" />
+        <img loading="lazy" src="pictures/flower3.jpg" class="small" alt="Small Image 2" />
+        <img loading="lazy" src="pictures/flower4.jpg" class="small" alt="Small Image 3" />
+        </div>
+      </div>
+    </section>
+
+    <!-- GLASS -->
+    <section id="content-glass" class="category-content" style="display: none;">
+      <div class="rubrik-wrapper">
+        <h2>GLASS </h2>
+        <p>portable storage / heat shields</p>
+        <div class="image-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <img loading="lazy" src="pictures/glass1.jpg" class="big" alt="Big Image" />
+        <img loading="lazy" src="pictures/glass2.jpg" class="small" alt="Small Image 1" />
+        <img loading="lazy" src="pictures/glass3.jpg" class="small" alt="Small Image 2" />
+        <img loading="lazy" src="pictures/glass4.jpg" class="small" alt="Small Image 3" />
+        <img loading="lazy" src="pictures/glass5.jpg" class="small" alt="Small Image 5" />
+        <img loading="lazy" src="pictures/glass6.jpg" class="small" alt="Small Image 6" />
+        </div>
+      </div>
+    </section>
+
+     <!-- CERAMIC -->
+     <section id="content-ceramic" class="category-content" style="display: none;">
+      <div class="rubrik-wrapper">
+        <h2>CERAMIC </h2>
+        <p>uprintable</p>
+        <div class="image-grid" style="grid-template-columns: repeat(4, 1fr);">
+        <img loading="lazy" src="pictures/ceramic1.jpg" class="big" alt="Big Image" />
+        <img loading="lazy" src="pictures/ceramic2.jpg" class="small" alt="Small Image 1" />
+        <img loading="lazy" src="pictures/ceramic3.jpg" class="small" alt="Small Image 2" />
+        <img loading="lazy" src="pictures/ceramic4.jpg" class="small" alt="Small Image 3" />
+        </div>
+      </div>
+    </section>
+
+     <section id="content-silver" class="category-content" style="display: none;">
+      <div class="rubrik-wrapper">
+        <h2>SILVER</h2>
+        <p>prototyping</p>
+        <div class="button-group" id="silver-button-group">
+          <button class="active" data-set="1">BOWLS</button>
+          <button data-set="2">SPOONS</button>
+        </div>
+        <div class="image-grid silver-set" data-set="1" style="grid-template-columns: repeat(4, 1fr);">
+        <img loading="lazy" src="pictures/silver1.jpg" class="big" alt="Big Image" />
+        <img loading="lazy" src="pictures/silver2.jpg" class="small" alt="Small Image 1" />
+        <img loading="lazy" src="pictures/silver3.jpg" class="small" alt="Small Image 2" />
+        <img loading="lazy" src="pictures/silver4.jpg" class="small" alt="Small Image 3" />
+      </div>
+      <div class="image-grid silver-set" data-set="2" style="grid-template-columns: repeat(2, 1fr);">
+        <img loading="lazy" src="pictures/spoon1.jpg" class="small" alt="Spoon 1" />
+        <img loading="lazy" src="pictures/spoon2.jpg" class="small" alt="Spoon 2" />
+        <img loading="lazy" src="pictures/spoon3.jpg" class="small" alt="Spoon 3" />
+        <img loading="lazy" src="pictures/spoon4.jpg" class="small" alt="Spoon 4" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ELECTRONIC -->
+    <section id="content-electronic" class="category-content" style="display: none;">
+      <div class="rubrik-wrapper">
+        <h2>ELECTRONIC </h2>
+        <p>make it run</p>
+        <div class="image-grid" style="grid-template-columns: repeat(4,1fr);">
+        <img loading="lazy" src="pictures/electronic1.jpg" class="big" alt="Big Image" />
+        <img loading="lazy" src="pictures/electronic2.jpg" class="small" alt="Small Image 1" />
+        <img loading="lazy" src="pictures/electronic3.jpg" class="small" alt="Small Image 2" />
+        <img loading="lazy" src="pictures/electronic4.jpg" class="small" alt="Small Image 3" />
+        </div>
+      </div>
+    </section>
 
     <footer>
       <p>&copy; 2025 – AinWorks * TTsilver</p>
     </footer>
     <div id="center-emoji"></div>
   </main>
-  <div id="emoji-cursor">🤌</div>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       // Slideshow logic
@@ -297,6 +335,19 @@
              });
  
              housingGrids.forEach(grid => {
+               grid.style.display = grid.getAttribute('data-set') === "1" ? 'grid' : 'none';
+             });
+           }
+           
+           if (targetId === 'content-silver') {
+             const silverButtons = document.querySelectorAll('#silver-button-group button');
+             const silverGrids = document.querySelectorAll('.silver-set');
+ 
+             silverButtons.forEach((btn, index) => {
+               btn.classList.toggle('active', index === 0);
+             });
+ 
+             silverGrids.forEach(grid => {
                grid.style.display = grid.getAttribute('data-set') === "1" ? 'grid' : 'none';
              });
            }
@@ -360,13 +411,13 @@
       const rightButton = document.querySelector(".button-a");
       const dpad = document.querySelector('.dpad');
 
-      const randomEmojis = ['🪙','🐉','💾','🍓','🍋', '🥊','💳', '🍒', '🦖', '🔦','🩸', '🍫', '🎃','🛒','🧇','🦧','🧀','🧈','🫳','🪰','🍰','🍄','🤌','🪈','🪃','🈂️','🛖','🪦','🛢️'];
+      const randomEmojis = ['🐉','💾','🍓','💳', '🦖','🩸', '🍫','🛒','🧇','🦧','🧀','🧈','🫳','🪰','🍄','🤌','🪈','📟','🈂️','🪦','🌋'];
       const rpsEmojis = ['✂️', '🪨', '📄'];
       const runningEmojis = {
-        left: '⏪',
-        right: '🛫',
-        up: '☁️',
-        down: '🪂'
+        left: '◀',
+        right: '▶',
+        up: '▲',
+        down: '▼'
       };
 
       let rpsIndex = 0;
@@ -428,6 +479,19 @@
         }
 
         showEmoji(runningEmojis[direction]);
+        if (direction === 'up' || direction === 'down') {
+          const activeSection = document.querySelector('.category-content[style*="block"]');
+          const group = activeSection?.querySelector('.button-group');
+          const buttons = group?.querySelectorAll('button');
+          const activeBtn = group?.querySelector('button.active');
+          if (buttons && activeBtn) {
+            const index = Array.from(buttons).indexOf(activeBtn);
+            let nextIndex = direction === 'down'
+              ? (index + 1) % buttons.length
+              : (index - 1 + buttons.length) % buttons.length;
+            buttons[nextIndex].click();
+          }
+        }
       }
       dpad.addEventListener("mousedown", handleDpadPress);
       dpad.addEventListener("touchstart", handleDpadPress);
