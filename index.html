@@ -49,11 +49,73 @@
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
-      border-radius: 20px;
+      border-radius: 16px;
       border: 9px solid #a5a2a2;
     }
-    </style>
+    
+    .password-error {
+      position: fixed;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 48px;
+      color: #ff4a4a;
+      font-family: 'VT323', monospace;
+      letter-spacing: 6px;
+      text-shadow: 2px 2px 0 black;
+      z-index: 9999;
+      animation: fadeOut 1.5s ease forwards;
+    }
+
+    .password-feedback {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    color: #ff4a4a;
+    font-family: 'VT323', monospace;
+    letter-spacing: 6px;
+    text-shadow: 2px 2px 0 black;
+    z-index: 9999;
+    pointer-events: none;
+   }
+    .password-feedback.success {
+      color: 	#9bbc0f;
+    }
+    
+    .dark-mode #center-emoji {
+      display: block;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: var(--font-emoji-large);
+      font-family: 'VT323', monospace;
+      z-index: 9999;
+      pointer-events: none;
+    }
+    
+    .dark-mode .button-a,
+    .dark-mode .button-b {
+      opacity: 1;
+    }
+    
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    .dark-mode #slideshow-frame {
+      background-color: 	#9bbc0f;
+      border-radius: 16px;
+    }
+  </style>
+  <audio id="start-sound" src="audio/startSound.mp3" preload="auto"></audio>
 </head>
+
+<audio id="audio-effect" src="audio/sound.mp3" preload="auto">a</audio>
 
 <body> 
 
@@ -66,7 +128,7 @@
       <div class="marquee-text"> one needs one to work so one can chill - ain said to silver
       </div>
     </div>
-    <div class="slideshow-wrapper"> 
+    <div id="slideshow-frame" class="slideshow-wrapper"> 
       <div class="slideshow-container">
         <img loading="lazy" class="slide" src="pictures/ovw1.jpg" alt="Slide 1" />
         <img loading="lazy" class="slide" src="pictures/ovw2.jpg" alt="Slide 2" />
@@ -133,11 +195,40 @@
         <button class="rubrik-button">electronic</button>
       </div>
     </div>
-    
+
+     <!-- Password -->
+     <div id="password-overlay" style="display: none;">
+      <div class="password-box">
+        <label>KEY:</label>
+        <div class="password-input-group">
+          <div class="input-box">
+            <input type="text" maxlength="1" id="digit-1" />
+            <input type="text" maxlength="1" id="digit-2" />
+            <input type="text" maxlength="1" id="digit-3" />
+            <span>-</span>
+            <input type="text" maxlength="1" id="digit-4" />
+            <input type="text" maxlength="1" id="digit-5" />
+            <input type="text" maxlength="1" id="digit-6" />
+            <input type="text" maxlength="1" id="digit-7" />
+          </div>
+        </div>
+        <div class="password-buttons">
+          <button id="password-submit">OK</button>
+          <button id="password-cancel">CANCEL</button>
+        </div>
+      </div>
+    </div>
+    <div id="key-feedback" class="password-feedback" style="display: none;">WRONG KEY</div>
+
+    <!-- GameboyControl -->
     <div class="gameboy-controls">
       <div class="dpad">
         <div class="dpad-part dpad-horizontal"></div>
         <div class="dpad-part dpad-vertical"></div>
+      </div>
+      <div class="center-controls" style="display: flex; justify-content: center; gap: 10px;">
+        <button class="btn-select"> </button>
+        <button class="btn-start"> </button>
       </div>
       <div class="buttons">
         <div class="button button-b"></div>
@@ -296,11 +387,65 @@
     <footer>
       <p>&copy; 2025 – AinWorks * TTsilver</p>
     </footer>
-    <div id="center-emoji"></div>
   </main>
+  <div id="center-emoji"></div>
   
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      const passwordOverlay = document.getElementById('password-overlay');
+      document.querySelector('.btn-select').addEventListener('click', () => {
+        passwordOverlay.style.display = 'flex';
+        document.getElementById('digit-1').focus();
+      });
+      const correctKey = "555-3215";
+      const audioFiles = [
+        "audio/sound2.mp3",
+        "audio/sound3.mp3",
+        "audio/sound4.mp3",
+        "audio/sound5.mp3",
+        "audio/sound6.mp3",
+        "audio/sound7.mp3"
+      ];
+      let audioEffect = new Audio();
+
+      document.getElementById('password-submit').addEventListener('click', () => {
+        const digits = [];
+        for (let i = 1; i <= 7; i++) {
+          digits.push(document.getElementById(`digit-${i}`).value.trim());
+        }
+        const enteredKey = `${digits.slice(0,3).join('')}-${digits.slice(3).join('')}`;
+              for (let i = 1; i <= 7; i++) {
+                document.getElementById(`digit-${i}`).value = '';
+              }
+              if (enteredKey === correctKey) {
+        passwordOverlay.style.display = 'none';
+        const feedback = document.getElementById('key-feedback');
+        feedback.textContent = 'KEY ACCEPTED!';
+        feedback.classList.add('success');
+        feedback.style.display = 'block';
+        setTimeout(() => {
+          feedback.style.display = 'none';
+          feedback.classList.remove('success');
+        }, 1500);
+      } else {
+        passwordOverlay.style.display = 'none';
+        const feedback = document.getElementById('key-feedback');
+        for (let i = 1; i <= 7; i++) {
+          document.getElementById(`digit-${i}`).value = '';
+        }
+        feedback.textContent = 'WRONG KEY';
+        feedback.classList.remove('success');
+        feedback.style.display = 'block';
+        setTimeout(() => {
+          feedback.style.display = 'none';
+        }, 1500);
+      }
+      });
+
+      document.getElementById('password-cancel').addEventListener('click', () => {
+        passwordOverlay.style.display = 'none';
+      });
+
       // Slideshow logic
       const slides = document.querySelectorAll('.slide');
       let currentSlide = 0;
@@ -428,7 +573,6 @@
 
       const emoji = document.getElementById("center-emoji");
       const leftButton = document.querySelector(".button-b");
-      const rightButton = document.querySelector(".button-a");
       const dpad = document.querySelector('.dpad');
 
       const randomEmojis = ['🐉','💾','🍓','💳', '🦖','🩸', '🍫','🛒','🧇','🦧','🧀','🧈','🫳','🪰','🍄','🤌','🪈','📟','🈂️','🪦','🌋'];
@@ -442,6 +586,19 @@
 
       let rpsIndex = 0;
 
+      const rightButton = document.querySelector(".button-a");
+
+      function handleRightPress(e) {
+        if (e.cancelable) e.preventDefault();
+        const randomFile = audioFiles[Math.floor(Math.random() * audioFiles.length)];
+        audioEffect.src = randomFile;
+        audioEffect.currentTime = 0;
+        audioEffect.play();
+      }
+
+      rightButton.addEventListener("mousedown", handleRightPress);
+      rightButton.addEventListener("touchstart", handleRightPress);
+
       // Universal handlers
       function showEmoji(text) {
         emoji.textContent = text;
@@ -451,6 +608,18 @@
       function hideEmoji() {
         emoji.style.display = "none";
       }
+
+      document.getElementById('password-cancel').addEventListener('click', () => {
+        passwordOverlay.style.display = 'none';
+      });
+
+      //start Button 
+      document.querySelector('.btn-start').addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const startSound = document.getElementById('start-sound');
+        startSound.currentTime = 0;
+        startSound.play();
+      });
 
       // Left Button
       function handleLeftPress(e) {
@@ -462,22 +631,7 @@
       leftButton.addEventListener("touchstart", handleLeftPress);
       document.addEventListener("mouseup", hideEmoji);
       document.addEventListener("touchend", hideEmoji);
-
-      // Right Button
-      function handleRightPress(e) {
-        if (e.cancelable) e.preventDefault();
-        const userEmoji = rpsEmojis[rpsIndex];
-        showEmoji(`${userEmoji}`);
-        rpsIndex = (rpsIndex + 1) % rpsEmojis.length;
-
-        setTimeout(() => {
-          const botEmoji = rpsEmojis[Math.floor(Math.random() * rpsEmojis.length)];
-          showEmoji(`${userEmoji}\nvs\n${botEmoji}`);
-        }, 500);
-      }
-      rightButton.addEventListener("mousedown", handleRightPress);
-      rightButton.addEventListener("touchstart", handleRightPress);
-
+      
       // D-pad Navigation (links/rechts für Rubriken, oben/unten für Subrubriken)
       const blocks = document.querySelectorAll('.block');
       let currentRubrik = 0;
@@ -509,7 +663,7 @@
         }
       
         showEmoji(runningEmojis[direction]);
-      
+        
         if (direction === 'left' || direction === 'right') {
           currentRubrik = direction === 'right'
             ? (currentRubrik + 1) % blocks.length
@@ -534,6 +688,21 @@
       }
       dpad.addEventListener("mousedown", handleDpadPress);
       dpad.addEventListener("touchstart", handleDpadPress);
+      
+      // Autofocus and auto-tab between password fields
+      document.querySelectorAll('.password-input-group input').forEach((input, index, inputs) => {
+        input.addEventListener('input', () => {
+          if (input.value.length === 1 && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+          }
+        });
+      
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Backspace' && input.value === '' && index > 0) {
+            inputs[index - 1].focus();
+          }
+        });
+      });
     });
   </script>
 </body>

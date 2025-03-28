@@ -172,9 +172,10 @@ nav#category-nav a {
 }
 
 .block.active img {
+  border: 10px solid;
+  border-radius: 18px;
   border-color: #8bac0f;
   box-shadow: 0px 0px 10px 3px rgba(138,172,15,0.5);
-  
 }
 
 
@@ -190,7 +191,7 @@ nav#category-nav a {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 16px;
   border: 9px solid 			#a5a2a2;
   transform: none; /* visually doubles size */
 }
@@ -280,7 +281,7 @@ footer {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 16px;
   border: 9px solid 		#a5a2a2;
 }
 
@@ -289,7 +290,7 @@ footer {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 16px;
   border: 6px solid 		#a5a2a2;
 }
 
@@ -342,7 +343,7 @@ footer {
 .dpad-part {
   position: absolute;
   background-color: black;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 .dpad-horizontal {
@@ -417,11 +418,6 @@ footer {
   font-weight: bold;
 }
 
-.block.active img {
-  border: 10px solid #8bac0f;
-  border-radius: 18px;
-}
-
 .flex-set[data-set="1"] {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -446,11 +442,193 @@ header h1 {
   width: 100%;
 }
 
-.silver-set[data-set="2"] img {
+.center-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.center-controls button {
+  background-color:#a5a2a2;
+  border: none;
+  color: #ddd;
+  padding: 5px 18px;
+  border-radius: 10px;
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow:  0 1px 2px rgba(0,0,0,0.4);
+
+  transition: all 0.2s ease;
+}
+
+.center-controls button:active {
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.4);
+}
+
+.center-controls {
+  padding-left: 10px;
+  padding-right: 20px;
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  transform: rotate(-20deg);
+}
+
+.btn-select {
+  transform: translateX(-25px);
+}
+
+.btn-start {
+  transform: translateX(25px);
+}
+
+.dark-mode main > *:not(.gameboy-controls):not(header):not(#key-feedback):not(#password-overlay):not(.slideshow-wrapper) {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+#password-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%; 
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.password-box {
+  background: #272929;
+  padding: 50px;
   border-radius: 20px;
-  border: 9px solid #a5a2a2;
+  text-align: center;
+  font-family: 'VT323', monospace;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.password-box label {
+  font-size: 60px;
+  color: #8bac0f;
+  margin-bottom: 20px;
+  letter-spacing: 4px;
+  display: block;
+}
+
+.password-box input {
+  font-size: 48px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 3px solid #494786;
+  background: #e0e0e0;
+  width: 100%;
+  text-align: center;
+  outline: none;
+  margin-bottom: 30px;
+}
+
+.password-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.password-box button {
+  font-family: 'VT323', monospace;
+  font-size: 40px;
+  padding: 10px 25px;
+  background: #494786;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.password-box button:hover {
+  background: #8bac0f;
+}
+
+.password-input-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.password-input-group input {
+  font-family: 'VT323', monospace;
+  font-size: 48px;
+  padding: 10px;
+  width: 50px;
+  border-radius: 10px;
+  border: 3px solid #494786;
+  background: #e0e0e0;
+  text-align: center;
+  outline: none;
+}
+
+.password-input-group span {
+  font-size: 48px;
+  color: #8bac0f;
+}
+
+.password-error {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'VT323', monospace;
+  font-size: 60px;
+  color: #dd2020;
+  text-shadow: 0 0 8px #fa8686;
+  z-index: 10000;
+  display: none;
+}
+
+.dark-mode .slideshow-container .slide {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.slideshow-container .slide {
+  opacity: 1;
+  transition: opacity 1s ease;
+  pointer-events: auto;
+}
+
+.dark-mode .slideshow-container::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #9bbc0f;
+  opacity: 1;
+  transition: opacity 1s ease;
+  z-index: 2;
+  border-radius: 16px;
+  pointer-events: none;
+}
+
+/* Initial state for slideshow-container::before when not in dark mode */
+.slideshow-container::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border-radius: 16px;
+  transition: background-color 1.5s ease-in-out;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
