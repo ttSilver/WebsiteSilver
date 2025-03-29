@@ -111,6 +111,17 @@
       background-color: 	#9bbc0f;
       border-radius: 16px;
     }
+    
+    .dark-mode .rubrik-wrapper {
+      opacity: 0.5;
+    }
+    
+    .dark-mode .category-content {
+      display: block;
+    }
+    .dark-mode .block {
+      pointer-events: auto;
+    }
   </style>
   <audio id="start-sound" src="audio/startSound.mp3" preload="auto"></audio>
 </head>
@@ -320,9 +331,9 @@
     <!-- GLASS -->
     <section id="content-glass" class="category-content" style="display: none;">
       <div class="rubrik-wrapper">
-        <h2>GLASS </h2>
+        <h2>GLASS</h2>
         <p>portable storage / heat shields</p>
-        <div class="image-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="image-grid">
         <img loading="lazy" src="pictures/glass1.jpg" class="big" alt="Big Image" />
         <img loading="lazy" src="pictures/glass2.jpg" class="small" alt="Small Image 1" />
         <img loading="lazy" src="pictures/glass3.jpg" class="small" alt="Small Image 2" />
@@ -336,7 +347,7 @@
      <!-- CERAMIC -->
      <section id="content-ceramic" class="category-content" style="display: none;">
       <div class="rubrik-wrapper">
-        <h2>CERAMIC </h2>
+        <h2>CERAMIC</h2>
         <p>unprintable</p>
         <div class="image-grid" style="grid-template-columns: repeat(4, 1fr);">
         <img loading="lazy" src="pictures/ceramic1.jpg" class="big" alt="Big Image" />
@@ -347,39 +358,42 @@
       </div>
     </section>
 
+    
+    <!-- SILVER -->
+
      <section id="content-silver" class="category-content" style="display: none;">
-      <div class="rubrik-wrapper">
-        <h2>SILVER</h2>
+      <div class="rubrik-wrapper">  
+      <h2>SILVER</h2>
         <p>prototyping</p>
         <div class="button-group" id="silver-button-group">
           <button class="active" data-set="1">BOWLS</button>
           <button data-set="2">SPOONS</button>
         </div>
         <div class="image-grid silver-set" data-set="1" style="grid-template-columns: repeat(4, 1fr);">
-        <img loading="lazy" src="pictures/silver1.jpg" class="big" alt="Big Image" />
-        <img loading="lazy" src="pictures/silver2.jpg" class="small" alt="Small Image 1" />
-        <img loading="lazy" src="pictures/silver3.jpg" class="small" alt="Small Image 2" />
-        <img loading="lazy" src="pictures/silver4.jpg" class="small" alt="Small Image 3" />
-      </div>
-      <div class="image-grid silver-set" data-set="2" style="grid-template-columns: repeat(4, 1fr);">
-        <img loading="lazy" src="pictures/spoon1.jpg" class="small" alt="Spoon 1" />
-        <img loading="lazy" src="pictures/spoon2.jpg" class="small" alt="Spoon 2" />
-        <img loading="lazy" src="pictures/spoon3.jpg" class="small" alt="Spoon 3" />
-        <img loading="lazy" src="pictures/spoon4.jpg" class="small" alt="Spoon 4" />
+          <img loading="lazy" src="pictures/silver1.jpg" class="big" alt="Big Image" />
+          <img loading="lazy" src="pictures/silver2.jpg" class="small" alt="Small Image 1" />
+          <img loading="lazy" src="pictures/silver3.jpg" class="small" alt="Small Image 2" />
+          <img loading="lazy" src="pictures/silver4.jpg" class="small" alt="Small Image 3" />
+        </div>
+        <div class="image-grid silver-set" data-set="2" style="grid-template-columns: repeat(4, 1fr);">
+          <img loading="lazy" src="pictures/spoon1.jpg" class="small" alt="Spoon 1" />
+          <img loading="lazy" src="pictures/spoon2.jpg" class="small" alt="Spoon 2" />
+          <img loading="lazy" src="pictures/spoon3.jpg" class="small" alt="Spoon 3" />
+          <img loading="lazy" src="pictures/spoon4.jpg" class="small" alt="Spoon 4" />
         </div>
       </div>
-    </section>
+     </section>
 
-    <!-- ELECTRONIC -->
+     <!-- ELECTRONIC -->
     <section id="content-electronic" class="category-content" style="display: none;">
       <div class="rubrik-wrapper">
-        <h2>ELECTRONIC </h2>
+        <h2>ELECTRONIC</h2>
         <p>make it run</p>
         <div class="image-grid" style="grid-template-columns: repeat(4,1fr);">
-        <img loading="lazy" src="pictures/electronic1.jpg" class="big" alt="Big Image" />
-        <img loading="lazy" src="pictures/electronic2.jpg" class="small" alt="Small Image 1" />
-        <img loading="lazy" src="pictures/electronic3.jpg" class="small" alt="Small Image 2" />
-        <img loading="lazy" src="pictures/electronic4.jpg" class="small" alt="Small Image 3" />
+          <img loading="lazy" src="pictures/electronic1.jpg" class="big" alt="Big Image" />
+          <img loading="lazy" src="pictures/electronic2.jpg" class="small" alt="Small Image 1" />
+          <img loading="lazy" src="pictures/electronic3.jpg" class="small" alt="Small Image 2" />
+          <img loading="lazy" src="pictures/electronic4.jpg" class="small" alt="Small Image 3" />
         </div>
       </div>
     </section>
@@ -475,6 +489,12 @@
           document.querySelectorAll('.category-content').forEach(sec => sec.style.display = 'none');
           const target = document.getElementById(targetId);
           if (target) {
+            if (document.body.classList.contains('dark-mode')) {
+              document.querySelectorAll('.category-content').forEach(sec => {
+                sec.style.display = 'none';
+              });
+           
+            }
             target.style.display = 'block';
             document.querySelector('.divider').scrollIntoView({ behavior: 'smooth' });
     
@@ -637,11 +657,9 @@
       let currentRubrik = 0;
       
       function updateRubrik(index) {
-        blocks.forEach((block, i) => {
-          block.classList.toggle('active', i === index);
-        });
-        blocks[index].click();
-      }
+          currentRubrik = index;
+          blocks[index].click(); // ruft die gleiche Logik wie ein echter Klick auf
+        }
       
       function handleDpadPress(e) {
         e.preventDefault();
@@ -668,7 +686,7 @@
           currentRubrik = direction === 'right'
             ? (currentRubrik + 1) % blocks.length
             : (currentRubrik - 1 + blocks.length) % blocks.length;
-      
+
           updateRubrik(currentRubrik);
         }
       

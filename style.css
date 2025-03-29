@@ -41,6 +41,8 @@ main {
   background-color: #e5e5e5;
   border-radius: 16px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  opacity: 1;
+  transition: opacity 0.5s ease;
 }
 
 .rubrik-wrapper h2 {
@@ -176,6 +178,7 @@ nav#category-nav a {
   border-radius: 18px;
   border-color: #8bac0f;
   box-shadow: 0px 0px 10px 3px rgba(138,172,15,0.5);
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 
@@ -468,10 +471,7 @@ header h1 {
 }
 
 .center-controls {
-  padding-left: 10px;
-  padding-right: 20px;
   padding-top: 40px;
-  display: flex;
   justify-content: center;
   gap: 20px;
   transform: rotate(-20deg);
@@ -485,7 +485,7 @@ header h1 {
   transform: translateX(25px);
 }
 
-.dark-mode main > *:not(.gameboy-controls):not(header):not(#key-feedback):not(#password-overlay):not(.slideshow-wrapper) {
+.dark-mode main > *:not(.gameboy-controls):not(header):not(#key-feedback):not(#password-overlay):not(.slideshow-wrapper):not(.grid):not(.rubrik-wrapper):not(.category-content):not(.block):not(#content-housing):not(#content-flex):not(#content-glass):not(#content-ceramic):not(#content-silver):not(#content-electronic) {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.5s ease;
@@ -599,12 +599,6 @@ header h1 {
   pointer-events: none;
 }
 
-.slideshow-container .slide {
-  opacity: 1;
-  transition: opacity 1s ease;
-  pointer-events: auto;
-}
-
 .dark-mode .slideshow-container::before {
   content: '';
   position: absolute;
@@ -631,4 +625,36 @@ header h1 {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.dark-mode .rubrik-wrapper {
+  opacity: 0.5 !important;
+  background-color: rgba(229, 229, 229, 0.2);
+  pointer-events: auto;
+  transition: opacity 0.5s ease, background-color 0.5s ease;
+}
+
+.dark-mode .rubrik-wrapper * {
+  opacity: 1 !important;
+}
+
+.dark-mode .grid {
+  opacity: 0.5;
+  pointer-events: auto;
+  transition: opacity 0.5s ease;
+}
+
+.dark-mode .category-content {
+  opacity: 0.5;
+  pointer-events: auto;
+}
+
+.dark-mode .category-content * {
+  opacity: 1 !important;
+}
+
+.dark-mode .divider {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
 }
