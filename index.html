@@ -37,15 +37,23 @@
     <div class="divider"></div>
     
     <div class="grid">
-      <div class="block" data-target="housing">
+      <div class="block" data-target="unit">
         <div class="block-inner" style="padding: 0px;">
           <a href="#housing">
             <img loading="lazy" src="pictures/hfdm.jpg" alt="housing" style="width: 100%; max-width: 120px;" />
           </a>
         </div>
-        <button class="rubrik-button">housing</button>
+        <button class="rubrik-button">unit</button>
       </div>
       
+      <div class="block" data-target="dock">
+        <div class="block-inner" style="padding: 0px;">
+          <a href="#docking">
+            <img loading="lazy" src="pictures/docking-thumb.jpg" alt="docking" style="width: 100%; max-width: 120px;" />
+          </a>
+        </div>
+        <button class="rubrik-button">dock</button>
+      </div>
       <div class="block" data-target="flex">
         <div class="block-inner" style="padding: 0px;">
           <a href="#flex">
@@ -82,6 +90,7 @@
         <button class="rubrik-button">silver</button>
       </div>
       
+      <!--
       <div class="block" data-target="electronic">
         <div class="block-inner" style="padding: 0px;">
           <a href="#electronic">
@@ -90,6 +99,7 @@
         </div>
         <button class="rubrik-button">electronic</button>
       </div>
+      -->
     </div>
 
      <!-- Password -->
@@ -131,10 +141,10 @@
     </div>
     
     <!-- HOUSING -->
-    <section id="content-housing" class="category-content" style="display: none;">
+    <section id="content-unit" class="category-content" style="display: none;">
       <div class="rubrik-wrapper">
-        <h2>HOUSING</h2>
-        <p>everyone needs a home...</p>
+        <h2>UNIT AW1</h2>
+        <p> AINWORK ONE is here</p>
         <div class="button-group" id="housing-button-group">
           <button data-set="1" class="active">STAGES</button>
           <button data-set="2">COMPONENTS</button>
@@ -178,6 +188,22 @@
       </div>
     </section>
     
+    <!-- DOCKING -->
+    <section id="content-dock" class="category-content" style="display: none;">
+      <div class="rubrik-wrapper">
+        <h2>DOCK</h2>
+        <p>lock & store</p>
+        <div class="image-grid docking-set" style="grid-template-columns: repeat(4, 1fr);">
+          <img loading="lazy" src="pictures/docking1.jpg" class="small" alt="Docking Image 1" />
+          <img loading="lazy" src="pictures/docking2.jpg" class="small" alt="Docking Image 2" />
+          <img loading="lazy" src="pictures/docking3.jpg" class="small" alt="Docking Image 3" />
+          <img loading="lazy" src="pictures/docking4.jpg" class="small" alt="Docking Image 4" />
+          <img loading="lazy" src="pictures/docking5.jpg" class="small" alt="Docking Image 5" />
+          <img loading="lazy" src="pictures/docking6.jpg" class="small" alt="Docking Image 6" />
+        </div>
+      </div>
+    </section>
+
     <!-- FLEX -->
     <section id="content-flex" class="category-content" style="display: none;">
       <div class="rubrik-wrapper">
@@ -261,6 +287,11 @@
         <img loading="lazy" src="pictures/ceramic19.jpg" class="small" alt="Small Image 17" />
         <img loading="lazy" src="pictures/ceramic20.jpg" class="small" alt="Small Image 17" />
         <img loading="lazy" src="pictures/ceramic21.jpg" class="small" alt="Small Image 17" />
+        <img loading="lazy" src="pictures/ceramic22.jpg" class="small" alt="Small Image 18" />
+        <img loading="lazy" src="pictures/ceramic23.jpg" class="small" alt="Small Image 19" />
+        <img loading="lazy" src="pictures/ceramic24.jpg" class="small" alt="Small Image 20" />
+        <img loading="lazy" src="pictures/ceramic25.jpg" class="small" alt="Small Image 21" />
+        <img loading="lazy" src="pictures/ceramic26.jpg" class="small" alt="Small Image 22" />
         </div>
       </div>
     </section>
@@ -291,7 +322,8 @@
       </div>
      </section>
 
-     <!-- ELECTRONIC -->
+    <!-- ELECTRONIC -->
+    <!--
     <section id="content-electronic" class="category-content" style="display: none;">
       <div class="rubrik-wrapper">
         <h2>ELECTRONIC</h2>
@@ -304,6 +336,7 @@
         </div>
       </div>
     </section>
+    -->
     
     <script type="module" src="scripts/main.js"></script>
     <script type="module" src="scripts/game.js"></script>

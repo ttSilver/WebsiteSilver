@@ -134,6 +134,13 @@
                 grid.style.display = grid.getAttribute('data-set') === "1" ? 'grid' : 'none';
               });
             }
+            
+            if (targetId === 'content-docking') {
+              const dockingGrids = document.querySelectorAll('.docking-set');
+              dockingGrids.forEach(grid => {
+                grid.style.display = 'grid';
+              });
+            }
           }
         });
       });
