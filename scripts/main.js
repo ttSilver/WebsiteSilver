@@ -6,7 +6,14 @@
       const text = "AINWORKS INITIATING...";
       const drawnEmojis = [];
       if (canvas) {
-        const rect = canvas.getBoundingClientRect();
+        ctx = canvas.getContext('2d');
+      }
+      if (canvas) {
+        const size = Math.min(window.innerWidth, window.innerHeight);
+        canvas.width = size;
+        canvas.height = size;
+        canvas.style.width = size + 'px';
+        canvas.style.height = size + 'px';
         ctx = canvas.getContext('2d');
       }
       const passwordOverlay = document.getElementById('password-overlay');
@@ -100,39 +107,42 @@
               const flexButtons = document.querySelectorAll('#flex-button-group button');
               const flexGrids = document.querySelectorAll('.flex-set');
     
-              flexButtons.forEach((btn, idx) => {
-                btn.classList.toggle('active', idx === 0);
-              });
+              flexButtons.forEach(btn => btn.classList.remove('active'));
+              flexButtons[0]?.classList.add('active');
     
               flexGrids.forEach(grid => {
-                grid.style.display = grid.getAttribute('data-set') === "1" ? 'grid' : 'none';
+                grid.style.display = 'none';
               });
+              const activeFlex = document.querySelector('.flex-set[data-set="1"]');
+              if (activeFlex) activeFlex.style.display = 'grid';
             }
             
             if (targetId === 'content-housing') {
               const housingButtons = document.querySelectorAll('#housing-button-group button');
               const housingGrids = document.querySelectorAll('.housing-set');
     
-              housingButtons.forEach((btn, idx) => {
-                btn.classList.toggle('active', idx === 0);
-              });
+              housingButtons.forEach(btn => btn.classList.remove('active'));
+              housingButtons[0]?.classList.add('active');
     
               housingGrids.forEach(grid => {
-                grid.style.display = grid.getAttribute('data-set') === "1" ? 'grid' : 'none';
+                grid.style.display = 'none';
               });
+              const activeHousing = document.querySelector('.housing-set[data-set="1"]');
+              if (activeHousing) activeHousing.style.display = 'grid';
             }
             
             if (targetId === 'content-silver') {
               const silverButtons = document.querySelectorAll('#silver-button-group button');
               const silverGrids = document.querySelectorAll('.silver-set');
     
-              silverButtons.forEach((btn, idx) => {
-                btn.classList.toggle('active', idx === 0);
-              });
+              silverButtons.forEach(btn => btn.classList.remove('active'));
+              silverButtons[0]?.classList.add('active');
     
               silverGrids.forEach(grid => {
-                grid.style.display = grid.getAttribute('data-set') === "1" ? 'grid' : 'none';
+                grid.style.display = 'none';
               });
+              const activeSilver = document.querySelector('.silver-set[data-set="1"]');
+              if (activeSilver) activeSilver.style.display = 'grid';
             }
             
             if (targetId === 'content-docking') {
@@ -287,32 +297,35 @@
             if (targetId === 'content-flex') {
               const flexButtons = document.querySelectorAll('#flex-button-group button');
               const flexGrids = document.querySelectorAll('.flex-set');
-              flexButtons.forEach((btn, idx) => {
-                btn.classList.toggle('active', idx === 0);
-              });
+              flexButtons.forEach(btn => btn.classList.remove('active'));
+              flexButtons[0]?.classList.add('active');
               flexGrids.forEach(grid => {
-                grid.style.display = grid.getAttribute('data-set') === "1" ? 'grid' : 'none';
+                grid.style.display = 'none';
               });
+              const activeFlex = document.querySelector('.flex-set[data-set="1"]');
+              if (activeFlex) activeFlex.style.display = 'grid';
             }
             if (targetId === 'content-housing') {
               const housingButtons = document.querySelectorAll('#housing-button-group button');
               const housingGrids = document.querySelectorAll('.housing-set');
-              housingButtons.forEach((btn, idx) => {
-                btn.classList.toggle('active', idx === 0);
-              });
+              housingButtons.forEach(btn => btn.classList.remove('active'));
+              housingButtons[0]?.classList.add('active');
               housingGrids.forEach(grid => {
-                grid.style.display = grid.getAttribute('data-set') === "1" ? 'grid' : 'none';
+                grid.style.display = 'none';
               });
+              const activeHousing = document.querySelector('.housing-set[data-set="1"]');
+              if (activeHousing) activeHousing.style.display = 'grid';
             }
             if (targetId === 'content-silver') {
               const silverButtons = document.querySelectorAll('#silver-button-group button');
               const silverGrids = document.querySelectorAll('.silver-set');
-              silverButtons.forEach((btn, idx) => {
-                btn.classList.toggle('active', idx === 0);
-              });
+              silverButtons.forEach(btn => btn.classList.remove('active'));
+              silverButtons[0]?.classList.add('active');
               silverGrids.forEach(grid => {
-                grid.style.display = grid.getAttribute('data-set') === "1" ? 'grid' : 'none';
+                grid.style.display = 'none';
               });
+              const activeSilver = document.querySelector('.silver-set[data-set="1"]');
+              if (activeSilver) activeSilver.style.display = 'grid';
             }
           }
         }
@@ -401,5 +414,29 @@
         ctx.restore(); // Zustand wiederherstellen
       }
       drawIntro();
+
+      // Burger-Menü aktivieren
+      const burger = document.getElementById("burger-menu");
+      const mobileNav = document.getElementById("mobile-nav");
+      
+      if (burger && mobileNav) {
+        burger.addEventListener("click", () => {
+          const isOpen = mobileNav.style.display === "flex";
+          mobileNav.style.display = isOpen ? "none" : "flex";
+        });
+      
+        document.querySelectorAll(".mobile-nav-list li").forEach(item => {
+          item.addEventListener("click", () => {
+            const targetId = 'content-' + item.getAttribute('data-target');
+            document.querySelectorAll('.category-content').forEach(sec => sec.style.display = 'none');
+            const target = document.getElementById(targetId);
+            if (target) {
+              target.style.display = 'block';
+              document.querySelector('.divider')?.scrollIntoView({ behavior: 'smooth' });
+              mobileNav.style.display = 'none';
+            }
+          });
+        });
+      }
     });
   

@@ -6,12 +6,45 @@
   <title>📟 AinWorks * TTsilver</title>
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css?v=1742985701417">
+  <style>
+    @media (max-width: 768px) {
+      .image-grid {
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0 auto;
+      }
+    
+      .image-grid img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      
+      #intro-canvas {
+        width: 100vw;
+        height: 100vw;
+      }
+    }
+  </style>
   <audio id="start-sound" src="audio/startSound.mp3" preload="auto"></audio>
 </head>
 
 <audio id="audio-effect" src="audio/sound.mp3" preload="auto">a</audio>
 
 <body> 
+  <div id="burger-menu" class="burger">&#9776;</div>
+  <nav id="mobile-nav" class="mobile-nav">
+    <div class="mobile-nav-header">
+    </div>
+    <ul class="mobile-nav-list">
+      <li data-target="unit">🚂 Unit</li>
+      <li data-target="dock">🧲 Dock</li>
+      <li data-target="flex">🧶 Flex</li>
+      <li data-target="glass">💎 Glass</li>
+      <li data-target="ceramic">🏺 Ceramic</li>
+      <li data-target="silver">🥄 Silver</li>
+    </ul>
+  </nav>
 
   <header>
     <h1><span class="status-indicator"></span> AinWorks * TTsilver</h1>
@@ -177,7 +210,7 @@
             <video class="video-component" src="videos/vid1.mp4" autoplay loop muted playsinline loading="lazy"></video>
           </div>
         </div>
-        <div class="image-grid housing-set" data-set="3" style="grid-template-columns: repeat(3, 1fr)">
+        <div class="image-grid housing-set" data-set="3" style="display: none; grid-template-columns: repeat(3, 1fr)">
           <img loading="lazy" src="pictures/asse1.jpg" class="small" alt="assembly 1" />
           <img loading="lazy" src="pictures/asse2.jpg" class="small" alt="assembly 2" />
           <img loading="lazy" src="pictures/asse3.jpg" class="small" alt="assembly 3" />

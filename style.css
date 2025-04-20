@@ -1,3 +1,15 @@
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img, video, canvas {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 html {
   scroll-behavior: smooth; /* sauberes Scrollverhalten unterstützen */
 }
@@ -37,7 +49,7 @@ main {
 .rubrik-wrapper {
   max-width: 1200px;
   margin: 40px auto;
-  padding: 10px 30px 100px 30px; /* top right bottom left */
+  padding: 10px 20px 100px 20px; /* top right bottom left */
   background-color: #e5e5e5;
   border-radius: 16px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
@@ -149,8 +161,11 @@ nav#category-nav a {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 30px;
-  max-width: 1140px;
-  margin: 0 auto;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  padding: 0 20px;
 }
 
 .block {
@@ -317,7 +332,6 @@ footer {
   color: #dd2020;
   font-weight: bold;
   text-shadow: 0 0 8px #fa8686;
-  letter-spacing: 3px;
 }
 
 /* Gameboy Controls */
@@ -672,19 +686,20 @@ header h1 {
   transition: opacity 0.5s ease;
 }
 
- .image-grid,.image-grid {
-  max-width: 1140px;
-  margin: 0 auto;
+.image-grid {
+  justify-items: center;
 }
 
-.image-grid img,
+.image-grid > * {
+  justify-self: center;
+}
+
 .image-grid img {
-  max-width: 100%;
-  height: auto;
-  aspect-ratio: 1 / 1;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 16px;
-  border: 9px solid #a5a2a2;
+  display: block;
+  margin: 0;
 }
 
 #intro-canvas {
@@ -692,8 +707,10 @@ header h1 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 95%;
-  height: 95%;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  max-width: 800px;
   z-index: 10;
   pointer-events: none;
   opacity: 0;
@@ -722,4 +739,85 @@ header h1 {
   object-fit: cover;
   border-radius: 16px;
   border: 9px solid #a5a2a2;
+}
+/* Burger-Menü nur auf mobilen Geräten */
+#burger-menu {
+  display: none;
+  font-size: 36px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10001;
+  color: white;
+  background-color: #a4245c;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile Navigationsmenü */
+#mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #272929;
+  z-index: 10000;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.mobile-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.mobile-nav-list li {
+  font-size: 32px;
+  margin: 20px 0;
+  color: white;
+  cursor: pointer;
+  font-family: 'VT323', monospace;
+}
+
+/* Sichtbarkeit auf mobilen Geräten aktivieren */
+@media (max-width: 768px) {
+  #burger-menu {
+    display: block;
+  }
+
+  nav#category-nav,
+  .grid {
+    display: none;
+  }
+
+  .image-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .slideshow-container {
+    height: 100vw;
+  }
+  .rubrik-wrapper {
+    padding: 10px 15px 60px 15px;
+  }
+  .image-grid {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  #intro-canvas {
+    width: 100vw;
+    height: 100vw;
+    aspect-ratio: 1 / 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
