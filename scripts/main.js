@@ -134,15 +134,18 @@
             if (targetId === 'content-silver') {
               const silverButtons = document.querySelectorAll('#silver-button-group button');
               const silverGrids = document.querySelectorAll('.silver-set');
-    
-              silverButtons.forEach(btn => btn.classList.remove('active'));
-              silverButtons[0]?.classList.add('active');
-    
-              silverGrids.forEach(grid => {
-                grid.style.display = 'none';
+
+              silverButtons.forEach(btn => {
+                btn.classList.remove('active');
               });
-              const activeSilver = document.querySelector('.silver-set[data-set="1"]');
-              if (activeSilver) activeSilver.style.display = 'grid';
+
+              let activeButton = document.querySelector('#silver-button-group button.active') || silverButtons[0];
+              activeButton.classList.add('active');
+              const setId = activeButton.getAttribute('data-set');
+
+              silverGrids.forEach(grid => {
+                grid.style.display = (grid.getAttribute('data-set') === setId) ? 'grid' : 'none';
+              });
             }
             
             if (targetId === 'content-docking') {
@@ -319,13 +322,18 @@
             if (targetId === 'content-silver') {
               const silverButtons = document.querySelectorAll('#silver-button-group button');
               const silverGrids = document.querySelectorAll('.silver-set');
-              silverButtons.forEach(btn => btn.classList.remove('active'));
-              silverButtons[0]?.classList.add('active');
-              silverGrids.forEach(grid => {
-                grid.style.display = 'none';
+
+              silverButtons.forEach(btn => {
+                btn.classList.remove('active');
               });
-              const activeSilver = document.querySelector('.silver-set[data-set="1"]');
-              if (activeSilver) activeSilver.style.display = 'grid';
+
+              let activeButton = document.querySelector('#silver-button-group button.active') || silverButtons[0];
+              activeButton.classList.add('active');
+              const setId = activeButton.getAttribute('data-set');
+
+              silverGrids.forEach(grid => {
+                grid.style.display = (grid.getAttribute('data-set') === setId) ? 'grid' : 'none';
+              });
             }
           }
         }
